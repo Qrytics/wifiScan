@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.env
+
+# Node / React / Expo
+node_modules/
+.expo/
+dist/
+.dist/
+admin/dist/
+*.local
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "OmniPresence",
+    "slug": "omnipresence",
+    "version": "1.0.0",
+    "scheme": "omnipresence",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0f172a"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.omnipresence.app",
+      "infoPlist": {
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "OmniPresence uses your location to detect when you arrive home.",
+        "NSLocationWhenInUseUsageDescription": "OmniPresence uses your location to detect when you arrive home."
+      }
+    },
+    "android": {
+      "package": "com.omnipresence.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#0f172a"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "OmniPresence uses your location to detect when you arrive home."
+        }
+      ]
+    ]
+  }
+}
