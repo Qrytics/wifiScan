@@ -16,9 +16,51 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  enable-pages:
+    name: Enable GitHub Pages
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      administration: write
+    steps:
+      - name: Enable GitHub Pages via API
+        uses: actions/github-script@v7
+        with:
+          script: |
+            try {
+              const response = await github.rest.repos.getPages({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              // Pages already enabled; ensure it uses the workflow (Actions) source
+              if (response.data.build_type !== 'workflow') {
+                await github.rest.repos.updateInformationAboutPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  build_type: 'workflow',
+                });
+                console.log('Updated GitHub Pages source to GitHub Actions');
+              } else {
+                console.log('GitHub Pages already configured with GitHub Actions source');
+              }
+            } catch (error) {
+              if (error.status === 404) {
+                // Pages not yet enabled — create it
+                await github.rest.repos.createPagesSite({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  build_type: 'workflow',
+                });
+                console.log('GitHub Pages enabled with GitHub Actions source');
+              } else {
+                throw error;
+              }
+            }
+
   build:
     name: Build Admin Dashboard
     runs-on: ubuntu-latest
+    needs: enable-pages
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
