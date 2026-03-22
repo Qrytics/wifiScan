@@ -32,14 +32,14 @@ export default function MusterReport() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-start sm:items-center justify-between gap-3">
         <p className="text-slate-400 text-sm">
           Real-time snapshot of every device on the network.
         </p>
         <button
           onClick={handleGenerate}
           disabled={loading}
-          className="flex items-center gap-2 bg-rose-600 hover:bg-rose-500 disabled:opacity-60 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors"
+          className="flex items-center gap-2 bg-rose-600 hover:bg-rose-500 disabled:opacity-60 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors shrink-0"
         >
           {loading ? (
             <Loader2 size={16} className="animate-spin" />
