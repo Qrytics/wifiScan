@@ -33,7 +33,7 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section className="bg-slate-900 border border-slate-700 rounded-2xl p-6 space-y-4">
+    <section className="bg-slate-900 border border-slate-700 rounded-2xl p-4 sm:p-6 space-y-4">
       <h2 className="text-lg font-semibold text-slate-100">{title}</h2>
       {children}
     </section>
@@ -76,16 +76,16 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-950">
       {/* Top nav */}
-      <header className="border-b border-slate-800 px-6 py-4 flex items-center justify-between">
+      <header className="border-b border-slate-800 px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Wifi className="text-indigo-400" size={22} />
+          <Wifi className="text-indigo-400 shrink-0" size={22} />
           <span className="font-bold text-lg tracking-tight">
             OmniPresence{" "}
             <span className="text-slate-500 font-normal text-sm">Admin</span>
           </span>
         </div>
         <div className="flex items-center gap-3">
-          <span className="text-slate-500 text-xs">
+          <span className="hidden sm:inline text-slate-500 text-xs">
             Last updated: {lastRefresh.toLocaleTimeString()}
           </span>
           <button
@@ -102,7 +102,7 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-6 py-8 space-y-6">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-4 sm:space-y-6">
         {/* Live occupancy strip */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard
@@ -173,7 +173,7 @@ function StatCard({
 }) {
   return (
     <div
-      className={`rounded-xl border p-5 flex items-center gap-4 ${
+      className={`rounded-xl border p-4 sm:p-5 flex items-center gap-3 sm:gap-4 ${
         highlight
           ? "border-indigo-600/50 bg-indigo-950/30"
           : "border-slate-700 bg-slate-900"
@@ -184,7 +184,7 @@ function StatCard({
         <p className="text-slate-400 text-xs uppercase tracking-wider">
           {label}
         </p>
-        <p className="text-3xl font-bold text-slate-100 mt-0.5">{value}</p>
+        <p className="text-2xl sm:text-3xl font-bold text-slate-100 mt-0.5">{value}</p>
       </div>
     </div>
   );
